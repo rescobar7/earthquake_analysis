@@ -50,6 +50,9 @@ void EQPulseAnalysis::SlaveBegin(TTree * /*tree*/)
    //object you need
    myfile = new TFile("eqhistos.root","RECREATE");
    h_totcharge = new TH1F("h_totcharge", "Integrated Charge", 900, 0, 9000);
+   h_time = new TH1D("h_time", "time",86400 , 0, 86400);
+   //h2_rate = new TH2F("h2_rate","h2_rate",);
+   
 }
 
 Bool_t EQPulseAnalysis::Process(Long64_t entry)
@@ -83,6 +86,9 @@ Bool_t EQPulseAnalysis::Process(Long64_t entry)
     GetEntry(entry);
     //Fill a histogram with the total charge
     h_totcharge->Fill(channel1_total_charge);
+    //cout<<channel1_peak<<"\t"<<time<<"\t"<<counter<<endl;
+    h_time->Fill(time-1460257200);
+    
     
     return kTRUE;
 }
@@ -104,6 +110,7 @@ void EQPulseAnalysis::SlaveTerminate()
     //Print an image
     //c_totcharge->Print("h_totcharge.png");
     h_totcharge->Write();
+    h_time->Write();
     myfile->Close();
 
     cout<<"Done slave-terminating...."<<endl;

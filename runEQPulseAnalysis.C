@@ -40,6 +40,7 @@ int main(int argc, char** argv) {
         cout<<"File "<<_file<<" has been chained"<<endl;
     }
     cout<<"Files from "<<argv[1]<<" have been chained"<<endl;
+    cout<<"Total number fo events chained: "<<ch->GetEntries()<<endl;
     
     //execute the analysis
     ch->Process(mypanalysis);

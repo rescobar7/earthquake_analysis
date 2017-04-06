@@ -79,6 +79,10 @@ public :
    //Here we can declare all our histograms, etc.
    int eventsCounter;
    TH1F* h_totcharge;
+   TH1D* h_time;
+   
+   //TH2D* h2_rate;
+   
    //root file for storage
    TFile* myfile;
    
